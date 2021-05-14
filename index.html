@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clock</title>
-    
-    <!--
-	ハンバーグたべたい
-    --> 
-    
+        
     <style>
-        #clock {
+        #sentence {
             font-size: medium;
+            color: #FF0000;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+        }
+        #clock {
+            font-size: xx-large;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -22,6 +27,8 @@
     </style>
 </head>
 <body>
+
+    <div id="sentence">NictJST - 0.65s</div>
     <div id="clock">
         
     </div>
@@ -31,7 +38,7 @@
             const json = await (await fetch('https://3fe5a5f690efc790d4764f1c528a4ebb89fa4168.nict.go.jp/cgi-bin/json')).json();
             const receiveTime = new Date().getTime();
             const serverTime = json.st * 1000 + (receiveTime - sendTime) / 2;
-            const diff = serverTime - receiveTime;
+            const diff = serverTime - receiveTime - 650;
             setInterval(() => {
                 const date = new Date(Date.now() + diff);
                 const hour = ('0' + date.getHours()).slice(-2);
